@@ -10,8 +10,10 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('build', () => {
-    var md = grunt.file.read('./docs/Test.md');
-    const html = marked(md);
-    grunt.file.write('./output/index.html', html);
+    const files = grunt.file.expand({ cwd: './docs'}, ['*.md', '!summary.md']);
+    files.map((t) => {
+      const md = grunt.file.read('./docs/' + t);
+      grunt.file.write('./output/' + t.replace('.md', '.html'), marked(md));
+    })
   });
 };
