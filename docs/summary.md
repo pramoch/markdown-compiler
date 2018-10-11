@@ -1,4 +1,4 @@
-* [Payment](payment.md)
-  * [Bill Payment](payment.md)
+* [Payment](/payment/payment.md)
+  * [Bill Payment](/payment/payment.md)
 
-* [Authentication](oauth.md)
+* [Authentication](/oauth/oauth.md)

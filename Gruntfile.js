@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     let template = grunt.file.read('./template/content.html');
     template = updateSidebar(template);
 
-    const patterns = ['*.md', '!summary.md'];
+    const patterns = ['**/*.md', '!summary.md'];
     const files = grunt.file.expand({ cwd: './docs' }, patterns);
     files.map((fileName) => {
       convertToHtml(fileName, template);
