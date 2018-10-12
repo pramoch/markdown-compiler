@@ -20,6 +20,12 @@ module.exports = function (grunt) {
         src: ['**/*.json'],
         dest: 'output/'
       }
+    },
+    watch: {
+      markdown: {
+        files: '**/*.md',
+        tasks: 'build'
+      }
     }
   });
 
