@@ -35,3 +35,6 @@ This is a redirection­based flow, which means that the application must be capa
 This is a redirection­based flow, which means that the application must be capable of interacting with the customer(i.e. the customer on SCB Easy app) and receiving API authorization codes that are routed through the customer.
 
 This is a redirection­based flow, which means that the application must be capable of interacting with the customer(i.e. the customer on SCB Easy app) and receiving API authorization codes that are routed through the customer.
+
+## API Explorer
+<div id="swagger"></div>

@@ -1,0 +1,103 @@
+{
+  "info": {
+    "title": "Partner Transactions API",
+    "description": "This API endpoint is to retrieve information about a specific transaction including the transaction status given a transaction ID",
+    "version": "1.0.0"
+  },
+  "host": "elb1s-internet-elb-1038610643.ap-southeast-1.elb.amazonaws.com",
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0",
+  "paths": {
+    "/partners/sandbox/v1/transactions/{transactionId}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transactionId",
+            "type": "string",
+            "required": true,
+            "description": "Transaction ID from the create new transaction method"
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "API authorization key respective to each partner obtained from partner onboarding process"
+          },
+          {
+            "name": "apisecret",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "API authorization secret obtained from partner onboarding process"
+          },
+          {
+            "name": "accept-language",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "The language of the content in the request payload,  'en' is supported"
+          },
+          {
+            "name": "requestUId",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "A unique identifier the client can generate to track the current request call"
+          },
+          {
+            "name": "resourceOwnerId",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "The hash value of the userId, or related user identification value"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction info successfully retrieved"
+          },
+          "400": {
+            "description": "Required standard headers not found"
+          },
+          "401": {
+            "description": "Authorization credentials required"
+          },
+          "403": {
+            "description": "Invalid authorization credentials"
+          },
+          "404": {
+            "description": "transactionID not found"
+          },
+          "500": {
+            "description": "Generic server side error"
+          },
+          "504": {
+            "description": "API Request Timeout"
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "API Key": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    }
+  }
+}
