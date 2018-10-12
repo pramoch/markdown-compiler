@@ -1,0 +1,155 @@
+{
+  "info": {
+    "title": "Partner Transactions API",
+    "description": "This API endpoint is to creates a transaction record to be processed for payment via deeplink to Easy App",
+    "version": "1.0.0"
+  },
+  "host": "elb1s-internet-elb-1038610643.ap-southeast-1.elb.amazonaws.com",
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0",
+  "paths": {
+    "/partners/sandbox/v1/deeplink/transactions": {
+      "post": {
+        "tags": [
+          "TransactionsDeeplink"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Content type of request payload, 'application/json' is required"
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "API authorization key respective to each partner obtained from partner onboarding process"
+          },
+          {
+            "name": "apisecret",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "API authorization secret obtained from partner onboarding process"
+          },
+          {
+            "name": "accept-language",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "The language of the content in the request payload,  'en' is supported"
+          },
+          {
+            "name": "requestUId",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "A unique identifier the client can generate to track the current request call"
+          },
+          {
+            "name": "resourceOwnerId",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "The hash value of the userId, or related user identification value"
+          },
+          {
+            "name": "channel",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Name of the partner channel to collect deeplink URL for transaction completion"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TransactionsDeeplink"
+            },
+            "required": true,
+            "description": "Details about the transaction"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Deeplink successfully created"
+          },
+          "400": {
+            "description": "Missing or invalid parameters and/or standard headers"
+          },
+          "401": {
+            "description": "Authorization credentials required"
+          },
+          "403": {
+            "description": "Invalid authorization credentials"
+          },
+          "500": {
+            "description": "Generic server side error"
+          },
+          "501": {
+            "description": "Feature is not supported"
+          },
+          "504": {
+            "description": "API Request Timeout"
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TransactionsDeeplink": {
+      "type": "object",
+      "required": [
+        "paymentAmount",
+        "transactionType",
+        "transactionSubType"
+      ],
+      "properties": {
+        "paymentAmount": {
+          "type": "number"
+        },
+        "transactionType": {
+          "type": "string"
+        },
+        "transactionSubType": {
+          "type": "string"
+        },
+        "sessionValidityPeriod": {
+          "type": "number"
+        },
+        "merchantMetaData": {
+          "type": "object"
+        },
+        "ref1": {
+          "type": "string"
+        },
+        "ref2": {
+          "type": "string"
+        },
+        "ref3": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "API Key": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    }
+  }
+}
