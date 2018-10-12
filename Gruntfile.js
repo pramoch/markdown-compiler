@@ -1,4 +1,5 @@
 const marked = require('marked');
+const pretty = require('pretty');
 
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
@@ -67,6 +68,6 @@ module.exports = function (grunt) {
     let docMarkdown = grunt.file.read('docs/' + fileName);
     const docHtml = marked(docMarkdown);
     const fullContent = template.replace('%content%', docHtml);
-    grunt.file.write('output/' + fileName.replace('.md', '.html'), fullContent);
+    grunt.file.write('output/' + fileName.replace('.md', '.html'), pretty(fullContent));
   };
 };
