@@ -10,9 +10,15 @@ module.exports = function (grunt) {
       template: {
         expand: true,
         cwd: 'template/',
-        src: ['**', '!content.html'],
+        src: ['**/*', '!content.html'],
         dest: 'output/'
       },
+      swagger: {
+        expand: true,
+        cwd: 'docs/',
+        src: ['**/*.json'],
+        dest: 'output/'
+      }
     }
   });
 
@@ -30,27 +36,37 @@ module.exports = function (grunt) {
     // ===== Copy template's dependency =====
     grunt.task.run('copy:template');
 
-    let template = grunt.file.read('./template/content.html');
-    template = updateSidebar(template);
+    // ===== Copy Swagger's JSON =====
+    grunt.task.run('copy:swagger');
+
+    // ===== Compile MD to HTML =====
+    compile();
+  }
+
+  const compile = () => {
+    const template = getHtmlTemplate();
 
     const patterns = ['**/*.md', '!summary.md'];
-    const files = grunt.file.expand({ cwd: './docs' }, patterns);
+    const files = grunt.file.expand({ cwd: 'docs/' }, patterns);
     files.map((fileName) => {
       convertToHtml(fileName, template);
     });
   }
 
-  const updateSidebar = (template) => {
-    let sidebarMarkdown = grunt.file.read('./docs/summary.md');
+  const getHtmlTemplate = () => {
+    let template = grunt.file.read('template/content.html');
+
+    // Update sidebar content
+    let sidebarMarkdown = grunt.file.read('docs/summary.md');
     sidebarMarkdown = sidebarMarkdown.split('.md').join('.html');
     const sidebarHtml = marked(sidebarMarkdown);
     return template.replace('%sidebar%', sidebarHtml);
   }
 
   const convertToHtml = (fileName, template) => {
-    let docMarkdown = grunt.file.read('./docs/' + fileName);
+    let docMarkdown = grunt.file.read('docs/' + fileName);
     const docHtml = marked(docMarkdown);
     const fullContent = template.replace('%content%', docHtml);
-    grunt.file.write('./output/' + fileName.replace('.md', '.html'), fullContent);
+    grunt.file.write('output/' + fileName.replace('.md', '.html'), fullContent);
   };
 };
