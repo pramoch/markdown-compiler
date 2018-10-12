@@ -1,0 +1,73 @@
+@font-face {
+    font-family: DBHeavent;
+    src: url(/fonts/DB-Heavent-Li.ttf);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: DBHeavent;
+    src: url(/fonts/DB-Heavent.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: DBHeavent;
+    src: url(/fonts/DB-Heavent-Med.ttf);
+    font-weight: 900;
+}
+
+body {
+  font-family: 'DBHeavent';
+  color: #4A4A4A;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  flex: 0 0 266px;
+  background: #F4F4F4;
+}
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar li {
+  list-style: none;
+  font-size: 20px;
+  background: #ffffff;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #4A4A4A;
+}
+
+.sidebar p {
+  margin: 0;
+}
+
+.content > h1 {
+  color: #7631C1;
+  font-size: 32px;
+  line-height: 40px;
+  margin: 0;
+  border-bottom: 2px solid;
+}
+
+.content > h2 {
+  color: #7631C1;
+  font-size: 26px;
+  line-height: 22px;
+  margin: 14px 0;
+  font-weight: normal;
+  border-left: 4px solid;
+  padding-left: 12px;
+}
+
+.content > p {
+  font-size: 22px;
+  margin: 0 0 0 16px;
+}

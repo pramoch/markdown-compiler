@@ -23,7 +23,8 @@ module.exports = function (grunt) {
     },
     watch: {
       markdown: {
-        files: '**/*.md',
+        // files: '**/*.md',
+        files: ['docs/**', 'template/**'],
         tasks: 'build'
       }
     }
