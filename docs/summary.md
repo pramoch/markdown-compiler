@@ -1,9 +1,9 @@
 * Payment
-  * [Bill Payment](/payment/payment.md)
+  * [Bill Payment](/payment/bill-payment.md)
 
 * Sharing Information
-  * [Customer Profile](/payment/payment.md)
+  * [Customer Profile](/sharing-information/customer-profile.md)
 
 * Authentication
-  * [Server Token](/oauth/oauth.md)
-  * [User Access Token](/oauth/oauth.md)
+  * [Server Token](/authentication/authentication.md)
+  * [User Access Token](/authentication/authentication.md#2-user-access-token-authentication)
