@@ -23,7 +23,6 @@ module.exports = function (grunt) {
     },
     watch: {
       markdown: {
-        // files: '**/*.md',
         files: ['docs/**', 'template/**'],
         tasks: 'build'
       }
@@ -72,9 +71,16 @@ module.exports = function (grunt) {
   }
 
   const convertToHtml = (fileName, template) => {
+    const updatedTemplate = updateActiveLink(fileName, template);
+
     let docMarkdown = grunt.file.read('docs/' + fileName);
     const docHtml = marked(docMarkdown);
-    const fullContent = template.replace('%content%', docHtml);
+    const fullContent = updatedTemplate.replace('%content%', docHtml);
     grunt.file.write('output/' + fileName.replace('.md', '.html'), pretty(fullContent));
   };
+
+  const updateActiveLink = (fileName, template) => {
+    const searchValue = 'href="/' + fileName.replace('.md', '.html') + '"';
+    return template.replace(searchValue, searchValue + ' active');
+  }
 };

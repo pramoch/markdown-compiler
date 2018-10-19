@@ -16,6 +16,10 @@
     font-weight: 900;
 }
 
+html, body, .container {
+  height: 100%;
+}
+
 body {
   font-family: 'DBHeavent';
   color: #4A4A4A;
@@ -65,8 +69,13 @@ body {
   color: #4A4A4A;
 }
 
+.sidebar a[active] {
+  color: #7631C1;
+}
+
 .content {
   padding: 12px 25px;
+  overflow: auto;
 }
 
 .content > h1 {
@@ -92,6 +101,8 @@ body {
   margin: 0 0 0 16px;
 }
 
+/* Override swagger's style */
 .content .swagger-ui .wrapper {
+  margin: 0;
   padding: 0;
 }
