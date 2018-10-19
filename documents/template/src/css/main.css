@@ -90,7 +90,7 @@ body {
   color: #7631C1;
   font-size: 26px;
   line-height: 22px;
-  margin: 14px 0;
+  margin: 14px 0 0 0;
   font-weight: normal;
   border-left: 4px solid;
   padding-left: 12px;
@@ -98,7 +98,11 @@ body {
 
 .content > p {
   font-size: 22px;
-  margin: 0 0 0 16px;
+  margin: 10px 0 0 0;
+}
+
+.content > h2 + p {
+  margin-left: 16px;
 }
 
 /* Override swagger's style */
