@@ -10,20 +10,20 @@ module.exports = function (grunt) {
     copy: {
       template: {
         expand: true,
-        cwd: 'template/',
+        cwd: 'documents/template/',
         src: ['**/*', '!content.html'],
         dest: 'src/assets/documents/'
       },
       swagger: {
         expand: true,
-        cwd: 'documents/',
+        cwd: 'documents/contents/',
         src: ['**/*.json'],
         dest: 'src/assets/documents/'
       }
     },
     watch: {
       markdown: {
-        files: ['documents/**', 'template/**'],
+        files: ['documents/contents/**', 'documents/template/**'],
         tasks: 'build'
       }
     }
@@ -54,17 +54,17 @@ module.exports = function (grunt) {
     const template = getHtmlTemplate();
 
     const patterns = ['**/*.md', '!summary.md'];
-    const files = grunt.file.expand({ cwd: 'documents/' }, patterns);
+    const files = grunt.file.expand({ cwd: 'documents/contents/' }, patterns);
     files.map((fileName) => {
       convertToHtml(fileName, template);
     });
   }
 
   const getHtmlTemplate = () => {
-    let template = grunt.file.read('template/content.html');
+    let template = grunt.file.read('documents/template/content.html');
 
     // Update sidebar content
-    let sidebarMarkdown = grunt.file.read('documents/summary.md');
+    let sidebarMarkdown = grunt.file.read('documents/contents/summary.md');
     sidebarMarkdown = sidebarMarkdown.split('.md').join('.html');
     const sidebarHtml = marked(sidebarMarkdown);
     return template.replace('%sidebar%', sidebarHtml);
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
   const convertToHtml = (fileName, template) => {
     const updatedTemplate = updateActiveLink(fileName, template);
 
-    let docMarkdown = grunt.file.read('documents/' + fileName);
+    let docMarkdown = grunt.file.read('documents/contents/' + fileName);
     const docHtml = marked(docMarkdown);
     const fullContent = updatedTemplate.replace('%content%', docHtml);
     grunt.file.write('src/assets/documents/' + fileName.replace('.md', '.html'), pretty(fullContent));
