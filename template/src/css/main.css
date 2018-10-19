@@ -1,18 +1,18 @@
 @font-face {
     font-family: DBHeavent;
-    src: url(/fonts/DB-Heavent-Li.ttf);
+    src: url(../fonts/DB-Heavent-Li.ttf);
     font-weight: 100;
 }
 
 @font-face {
     font-family: DBHeavent;
-    src: url(/fonts/DB-Heavent.ttf);
+    src: url(../fonts/DB-Heavent.ttf);
     font-weight: 600;
 }
 
 @font-face {
     font-family: DBHeavent;
-    src: url(/fonts/DB-Heavent-Med.ttf);
+    src: url(../fonts/DB-Heavent-Med.ttf);
     font-weight: 900;
 }
 
